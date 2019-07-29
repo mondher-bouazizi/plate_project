@@ -29,6 +29,21 @@ def recognize_img(image_file):
     #print(json.dumps(result, indent=2))
     return result
 
+
+def recognize_frame(frame):
+    # This doesn't work, to be removed!
+    result = []
+
+    response = requests.post(
+        'https://api.platerecognizer.com/v1/plate-reader/',
+        files=dict(upload=frame),
+        headers={'Authorization': 'Token ' + MYKEY_1})
+    result.append(response.json(object_pairs_hook=OrderedDict))
+    time.sleep(1)
+    #print(json.dumps(result, indent=2))
+    return result
+
+	
 def recognize_vid(video_file, start=0, end=40, skip = 3):
     images = []
     result = []
