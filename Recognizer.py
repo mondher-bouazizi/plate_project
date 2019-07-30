@@ -23,28 +23,14 @@ def recognize_img(image_file):
         response = requests.post(
             'https://api.platerecognizer.com/v1/plate-reader/',
             files=dict(upload=fp),
-            headers={'Authorization': 'Token ' + MYKEY_1})
+            headers={'Authorization': 'Token ' + MYKEY_2})
         result.append(response.json(object_pairs_hook=OrderedDict))
     time.sleep(1)
     #print(json.dumps(result, indent=2))
     return result
 
 
-def recognize_frame(frame):
-    # This doesn't work, to be removed!
-    result = []
-
-    response = requests.post(
-        'https://api.platerecognizer.com/v1/plate-reader/',
-        files=dict(upload=frame),
-        headers={'Authorization': 'Token ' + MYKEY_1})
-    result.append(response.json(object_pairs_hook=OrderedDict))
-    time.sleep(1)
-    #print(json.dumps(result, indent=2))
-    return result
-
-	
-def recognize_vid(video_file, start=0, end=40, skip = 3):
+def recognize_vid(video_file, start=0, end=400, skip = 3):
     images = []
     result = []
     cap = cv2.VideoCapture(video_file)
@@ -67,7 +53,7 @@ def recognize_vid(video_file, start=0, end=40, skip = 3):
         response = requests.post(
             'https://api.platerecognizer.com/v1/plate-reader/',
             files=dict(upload=fp),
-            headers={'Authorization': 'Token ' + MYKEY_1})
+            headers={'Authorization': 'Token ' + MYKEY_2})
         result.append(response.json())
         time.sleep(1)
     #print(json.dumps(result, indent=2))
